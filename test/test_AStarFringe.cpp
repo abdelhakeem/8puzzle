@@ -60,10 +60,7 @@ int main() {
 
     AStarFringe fringe([](const Board&) -> double { return 0; });
 
-    fringe.insertAll(nodes);
-    assert(fringe.extract() == nodes[0]);
-    assert(fringe.extract() == nullptr);
-
+    // Descending order, should all be inserted
     std::reverse(nodes.begin(), nodes.end());
     fringe.insertAll(nodes);
     std::reverse(nodes.begin(), nodes.end());
@@ -74,14 +71,13 @@ int main() {
 
     assert(fringe.extract() == nullptr);
 
-    fringe.insert(nodes[6]);
-    fringe.insert(nodes[2]);
-    assert(fringe.extract() == nodes[2]);
+    // Now nothing should be inserted since we have already
+    // seen a node with the same board configuration and with cost = 0
+    fringe.insertAll(nodes);
+    assert(fringe.extract() == nullptr);
 
-    fringe.insert(nodes[3]);
-    fringe.insert(nodes[4]);
-    fringe.insert(nodes[5]);
-    assert(fringe.extract() == nodes[6]);
+    std::reverse(nodes.begin(), nodes.end());
+    fringe.insertAll(nodes);
     assert(fringe.extract() == nullptr);
 
     return 0;
