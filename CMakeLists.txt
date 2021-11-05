@@ -3,6 +3,8 @@ project(eightpuzzle CXX)
 
 include_directories(src/include)
 
+add_compile_options(-Wall -Wextra -Wpedantic -std=c++20)
+
 add_executable(8puzzle
     src/main.cpp
     src/Output.cpp
@@ -19,8 +21,4 @@ add_executable(8puzzle
     src/FringePolicy/AStarEucFringePolicy.cpp
     src/FringePolicy/AStarMisplacedFringePolicy.cpp)
 
-target_compile_options(8puzzle
-    PRIVATE -Wall
-    PRIVATE -Wextra
-    PRIVATE -Wpedantic
-    PRIVATE -std=c++20)
+add_subdirectory(test)
