@@ -1,3 +1,5 @@
+#include <unordered_set>
+
 #include "Solver.h"
 
 Result Solver::solve(const Board& board, FringePolicy::sptr policy,
@@ -12,7 +14,7 @@ Result Solver::solve(const Board& board, FringePolicy::sptr policy,
     };
 
     Fringe::sptr fringe = policy->makeFringe();
-    std::unordered_set<SearchNode::sptr> expanded;
+    std::unordered_set<size_t> expanded;
     SearchNode::sptr node;
 
     fringe->insert(std::make_shared<SearchNode>(board));
@@ -20,7 +22,7 @@ Result Solver::solve(const Board& board, FringePolicy::sptr policy,
     auto t1 = std::chrono::steady_clock::now();
 
     while ((node = fringe->extract())) {
-        if (!expanded.contains(node)) {
+        if (!expanded.contains(node->getBoard().hash())) {
             size_t depth = node->getPath().size();
             res.searchDepth = std::max(res.searchDepth, depth);
             res.nodesExpanded++;
@@ -45,7 +47,7 @@ Result Solver::solve(const Board& board, FringePolicy::sptr policy,
             }
 
             fringe->insertAll(node->expand());
-            expanded.insert(node);
+            expanded.insert(node->getBoard().hash());
         }
     }
 
