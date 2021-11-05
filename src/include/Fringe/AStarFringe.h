@@ -13,28 +13,12 @@ class AStarFringe : public Fringe {
         double cost;
     };
 
-    struct Cost {
-        // Number of similar nodes
-        int count;
-
-        // Least cost value so far for the associated configuration
-        double value;
-    };
-
     typedef double Heuristic(const Board&);
 
     std::priority_queue<Node, std::vector<Node>, std::greater<Node>> fringe;
 
-    // <Board::hash(), Cost>
-    //
-    // When inserting a node with a repeated board configuration, only insert
-    // it if its cost is less than the least cost known so far for the given
-    // configuration (even if the node associated with that least cost has
-    // already been extracted from the fringe, as long as the fringe still
-    // contains at least one similar node regardless of its cost, i.e.:
-    //
-    //     Cost.count > 0
-    std::unordered_map<size_t, Cost> costMap;
+    // Least costs so far for previously-inserted board configurations
+    std::unordered_map<size_t, double> leastCosts;
 
     Heuristic* heuristic;
 
