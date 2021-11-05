@@ -1,14 +1,14 @@
 #ifndef __DFS_FRINGE_H__
 #define __DFS_FRINGE_H__
 
-#include <deque>
+#include <stack>
 
 #include "Fringe.h"
 
 class DFSFringe : public Fringe {
-    std::deque<SearchNode::sptr> fringe;
+    std::stack<SearchNode::sptr> fringe;
 
-public:
+protected:
     bool insertInFringe(const SearchNode::sptr&) override;
     SearchNode::sptr extractFromFringe() override;
 };

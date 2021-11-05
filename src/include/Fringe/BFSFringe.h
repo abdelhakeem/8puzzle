@@ -1,14 +1,14 @@
 #ifndef __BFS_FRINGE_H__
 #define __BFS_FRINGE_H__
 
-#include <deque>
+#include <queue>
 
 #include "Fringe.h"
 
 class BFSFringe : public Fringe {
-    std::deque<SearchNode::sptr> fringe;
+    std::queue<SearchNode::sptr> fringe;
 
-public:
+protected:
     bool insertInFringe(const SearchNode::sptr&) override;
     SearchNode::sptr extractFromFringe() override;
 };

@@ -2,12 +2,13 @@
 #define __FRINGE_H__
 
 #include <memory>
-#include <unordered_set>
+#include <set>
 
 #include "SearchNode.h"
 
 class Fringe {
-    std::unordered_set<size_t> fringeSet;
+    // <Board::hash()>
+    std::multiset<size_t> fringeSet;
 
 protected:
     virtual bool insertInFringe(const SearchNode::sptr&) = 0;

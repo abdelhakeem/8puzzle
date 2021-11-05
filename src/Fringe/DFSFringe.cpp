@@ -2,7 +2,7 @@
 
 bool DFSFringe::insertInFringe(const SearchNode::sptr& node) {
     if (!contains(node)) {
-        fringe.push_back(node);
+        fringe.push(node);
         return true;
     }
 
@@ -14,8 +14,8 @@ SearchNode::sptr DFSFringe::extractFromFringe() {
         return nullptr;
     }
 
-    SearchNode::sptr back = fringe.back();
-    fringe.pop_back();
+    SearchNode::sptr top = fringe.top();
+    fringe.pop();
 
-    return back;
+    return top;
 }

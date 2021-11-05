@@ -20,7 +20,8 @@ SearchNode::sptr Fringe::extract() {
     SearchNode::sptr node = extractFromFringe();
 
     if (node) {
-        fringeSet.erase(node->getBoard().hash());
+        // Remove only one element
+        fringeSet.erase(fringeSet.find(node->getBoard().hash()));
     }
 
     return node;
