@@ -72,7 +72,7 @@ Nodes expanded: 7
 Running time: 51035 ns
 Path cost: 2
 
-$ foo@bar:8puzzle$ ./build/8puzzle 312458670 -a bfs
+foo@bar:8puzzle$ ./build/8puzzle 312458670 -a bfs
 
 Solution with A-Star using Manhattan distance heuristic:
 
