@@ -74,7 +74,7 @@ Path cost: 2
 
 foo@bar:8puzzle$ ./build/8puzzle 312458670 -a bfs
 
-Solution with A-Star using Manhattan distance heuristic:
+Solution with BFS:
 
 3 1 2
 4 5 8
@@ -117,8 +117,8 @@ Solution with A-Star using Manhattan distance heuristic:
 6 7 8
 
 Search depth: 4
-Nodes expanded: 5
-Running time: 186841 ns
+Nodes expanded: 22
+Running time: 192206 ns
 Path cost: 4
 
 ```
